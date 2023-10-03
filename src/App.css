@@ -64,9 +64,39 @@ hr.Garis-name {
 
 .Body-bawah {
   margin: 40px 20px 0px 20px;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .Body-bawah li {
   padding-top: 5px;
   font-size: calc(10px + 1vmin);
+}
+
+.Body-bawah hr {
+  flex-basis: 100%;
+}
+
+.lingkaran {
+  border-radius: 200px;
+}
+
+.Bawah-child {
+  flex-basis: 50%;
+}
+
+.Tombol-container {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Tombol-container button {
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: calc(10px + 1vmin);
+  border-radius: 10px;
+  color: white;
+  background-color: cornflowerblue;
 }

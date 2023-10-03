@@ -1,12 +1,15 @@
 import avatar from './image/avatar.png';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [circle, setCircle] = useState(false);
+
   return (
     <div className="App">
       <body className='App-body'>
         <div className="Body-kiri">
-          <img src={avatar} className="Header-logo" alt="avatar" />
+          <img src={avatar} className={`Header-logo ${circle ? 'lingkaran' : ''}`} alt="avatar" />
           <li>Pria</li>
           <li>Mahasiswa</li>
         </div>
@@ -29,8 +32,13 @@ function App() {
 
       <div className='Body-bawah'>
         <hr></hr>
-        <p>Riwayat Organisasi:</p>
-        <li>Student Union Informatika 2023</li>
+        <div className='Bawah-child'>
+          <p>Riwayat Organisasi:</p>
+          <li>Student Union Informatika 2023</li>
+        </div>
+        <div className='Bawah-child Tombol-container'>
+          <button onClick={() => setCircle(prev => !prev)}>Ganti Border</button>
+        </div>
       </div>
     </div>
   );
