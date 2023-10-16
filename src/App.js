@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState, createElement } from 'react';
 import avatar from './image/avatar.png';
 import './App.css';
 
 function App() {
   const [circle, setCircle] = useState(false);
 
-  const createElement = (type, props, children) =>
-    React.createElement(type, props, children);     //  set object createElement untuk mempermudah nesting
+  // const createElement = (type, props, children) =>
+  //   React.createElement(type, props, children);     //  set object createElement untuk mempermudah nesting
 
   const image = createElement('img', {
     src: avatar,
