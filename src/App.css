@@ -1,10 +1,10 @@
 * {
   margin: 0;
+  overflow-x: hidden;
 }
 
 .App {
   width: 100vw;
-  height: 100vh;
   background-color: #282c34;
   color: white;
   font-size: calc(10px + 2vmin);
@@ -12,21 +12,24 @@
 
 .App-body {
   width: 100vw;
+  height: 67vh;
   display: flex;
   flex-flow: row nowrap;
 }
 
 .Body-kiri {
-  width: 40%;
+  width: 40vw;
   list-style-type: square;
   display: flex;
   flex-flow: column nowrap;
 }
 
 .Header-logo {
-  width: 40vw;
+  width: calc(40vw - 10px);
   height: 40vh;
-  pointer-events: none;
+  line-height: 40vh;
+  text-align: center;
+  border: 5px solid white;
 }
 
 .Body-kiri li {
@@ -34,11 +37,11 @@
 }
 
 .Body-kanan {
-  width: 60%;
-  list-style-type: circle;
+  width: 60vw;
+  /* list-style-type: circle; */
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 50px;
 }
@@ -48,14 +51,16 @@ hr.Garis-name {
 }
 
 .List-info {
-  width: 70%;
+  width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: column;
+  gap: 20px;
 }
 
 .Header-name {
   text-align: center;
-  font-size: calc(10px + 5vmin);
+  font-size: calc(5px + 5vmin);
 }
 
 .Body-kanan li {
@@ -63,7 +68,8 @@ hr.Garis-name {
 }
 
 .Body-bawah {
-  margin: 40px 20px 0px 20px;
+  margin: 20px 20px 0px 20px;
+  height: calc(33vh - 22px);
   display: flex;
   flex-flow: row wrap;
 }
@@ -73,30 +79,51 @@ hr.Garis-name {
   font-size: calc(10px + 1vmin);
 }
 
-.Body-bawah hr {
-  flex-basis: 100%;
-}
-
 .lingkaran {
   border-radius: 200px;
 }
 
-.Bawah-child {
+div.Bawah-child {
   flex-basis: 50%;
 }
 
 .Tombol-container {
-  height: 40vh;
+  min-height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Tombol-container button {
+.Custom-button {
   padding: 10px 20px;
   font-weight: 700;
   font-size: calc(10px + 1vmin);
   border-radius: 10px;
   color: white;
   background-color: cornflowerblue;
+}
+
+.Custom-button:hover {
+  background-color: rgb(69, 92, 167);
+  color: rgba(255, 255, 255, 0.85);
+  transition: .2s;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 15px;
+  width: 50%;
+  border: none;
+  border-radius: 10px;
+  text-align: left;
+  font-size: calc(5px + 2vmin);
+  font-weight: 900;
+}
+
+.accordion p {
+  font-size: calc(10px + 1vmin);
+  font-weight: 500;
+  padding-top: 10px;
 }

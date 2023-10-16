@@ -1,24 +1,33 @@
 import { useState, createElement } from 'react';
 import avatar from './image/avatar.png';
+import Accordion from './components/Accordion';
 import './App.css';
 
 function App() {
-  const [circle, setCircle] = useState(false);
-
-  // const createElement = (type, props, children) =>
-  //   React.createElement(type, props, children);     //  set object createElement untuk mempermudah nesting
+  const [circle, setCircle] = useState(false);  //  state border
+  const [picture, setPicture] = useState(false);  //  state gambar
+  const [activeIndex, setActiveIndex] = useState(0);  //  state accordion
 
   const image = createElement('img', {
-    src: avatar,
+    src: picture ? avatar : '',
     className: `Header-logo ${circle ? 'lingkaran' : ''}`,    //  class 'lingkaran' hanya muncul ketika tombol ditekan
     alt: 'avatar',
   });
 
+  const containerTombolPicture = createElement(
+    'div',
+    { className: 'Tombol-container' },
+    [
+      createElement('button', { className: 'Custom-button', onClick: () => setPicture(prev => !prev) }, 'Tampilkan Gambar'),
+    ]
+  );
+
   const bodyKiri = createElement(
     'div',
     { className: 'Body-kiri' },
-    [image, createElement('li', null, 'Pria'), createElement('li', null, 'Mahasiswa')]
+    [image, containerTombolPicture, createElement('li', null, 'Pria'), createElement('li', null, 'Mahasiswa')]
   );
+
 
   const containerName = createElement(
     'div',
@@ -29,20 +38,42 @@ function App() {
     ]
   );
 
+  const angkatan = createElement(Accordion, {
+    title: "Angkatan",
+    isActive: activeIndex === 0,
+    onShow: () => setActiveIndex(0)
+  }, "Angkatan 2022");
+
+  const jurusan = createElement(Accordion, {
+    title: "Jurusan & Spesialisasi",
+    isActive: activeIndex === 1,
+    onShow: () => setActiveIndex(1)
+  }, "Informatika - Full Stack Development");
+
+  const jalurSukses = createElement(Accordion, {
+    title: "Jalur Sukses",
+    isActive: activeIndex === 2,
+    onShow: () => setActiveIndex(2)
+  }, "Corporate Entrepreneurship");
+
+
+  const hobi = createElement(Accordion, {
+    title: "Hobi",
+    isActive: activeIndex === 3,
+    onShow: () => setActiveIndex(3)
+  }, "Tidur");
+
   const listInfo = createElement(
     'div',
     { className: 'List-info' },
-    [
-      createElement('li', null, 'Angkatan 2022'),
-      createElement('li', null, 'Informatika - Full Stack Development'),
-      createElement('li', null, 'Jalur Sukses: Corporate Entrepreneurship'),
-      createElement('li', null, 'Hobi: Tidur'),
-    ]
+    [angkatan, jurusan, jalurSukses, hobi]
   );
 
   const bodyKanan = createElement('div', { className: 'Body-kanan' }, [containerName, listInfo]);
 
+
   const bodyAtas = createElement('body', { className: 'App-body' }, [bodyKiri, bodyKanan]);
+
 
   const containerRiwayat = createElement(
     'div',
@@ -53,21 +84,20 @@ function App() {
     ]
   );
 
-  const containerTombol = createElement(
+  const containerTombolBorder = createElement(
     'div',
     { className: 'Bawah-child Tombol-container' },
     [
-      createElement('button', { onClick: () => setCircle(prev => !prev) }, 'Ganti Border'),
+      createElement('button', { className: 'Custom-button', onClick: () => setCircle(prev => !prev) }, 'Ganti Border'),
     ]
   );
 
   const bodyBawah = createElement('div', { className: 'Body-bawah' }, [
-    createElement('hr', null),
     containerRiwayat,
-    containerTombol,
+    containerTombolBorder,
   ]);
 
-  return createElement('div', { className: 'App' }, [bodyAtas, bodyBawah]);
+  return createElement('div', { className: 'App' }, [bodyAtas, createElement('hr', null), bodyBawah]);
 }
 
 export default App;
