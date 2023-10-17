@@ -1,6 +1,7 @@
 import { useState, createElement } from 'react';
 import avatar from './image/avatar.png';
 import Accordion from './components/Accordion';
+import ToggleButton from './components/ToggleButton';
 import './App.css';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
   const [activeIndex, setActiveIndex] = useState(0);  //  state accordion
 
   const image = createElement('img', {
-    src: picture ? avatar : '',
+    src: picture ? avatar : '',                               //  src avatar hanya muncul ketika tombol ditekan
     className: `Header-logo ${circle ? 'lingkaran' : ''}`,    //  class 'lingkaran' hanya muncul ketika tombol ditekan
     alt: 'avatar',
   });
@@ -18,7 +19,7 @@ function App() {
     'div',
     { className: 'Tombol-container' },
     [
-      createElement('button', { className: 'Custom-button', onClick: () => setPicture(prev => !prev) }, 'Tampilkan Gambar'),
+      createElement(ToggleButton, { toggleFunction: setPicture }, 'Tampilkan Gambar'),
     ]
   );
 
@@ -56,7 +57,6 @@ function App() {
     onShow: () => setActiveIndex(2)
   }, "Corporate Entrepreneurship");
 
-
   const hobi = createElement(Accordion, {
     title: "Hobi",
     isActive: activeIndex === 3,
@@ -88,7 +88,7 @@ function App() {
     'div',
     { className: 'Bawah-child Tombol-container' },
     [
-      createElement('button', { className: 'Custom-button', onClick: () => setCircle(prev => !prev) }, 'Ganti Border'),
+      createElement(ToggleButton, { toggleFunction: setCircle }, 'Ganti Border'),
     ]
   );
 
