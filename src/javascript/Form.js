@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function Profile({ onPageChange }) {
+  // state form yang terbuka
   const [currentForm, selectForm] = useState(1);
 
   const [namaTemp, setNamaTemp] = useState(localStorage.getItem("nama"));

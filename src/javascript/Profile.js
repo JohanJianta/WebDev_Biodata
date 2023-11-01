@@ -1,6 +1,28 @@
 import avatar from "../image/avatar.png";
 
 export default function Profile() {
+  // list warna gender
+  const genderColors = {
+    pria: "#3282B8", // biru
+    "laki-laki": "#3282B8", // biru
+    perempuan: "#F875AA", // pink
+    wanita: "#F875AA", // pink
+  };
+
+  // objek gender
+  const gender = {
+    value: localStorage.getItem("gender"),
+    // ambil warna berdasarkan gender, apabila tidak adaa yang sesuai kembalikan warna hijau
+    color:
+      genderColors[localStorage.getItem("gender").toLowerCase()] || "#86A789",
+  };
+
+  // objek nama
+  const nama = {
+    value: localStorage.getItem("nama"),
+    color: gender.color,
+  };
+
   return (
     <div className="Profile Flex-Tengah">
       <div className="Profile-utama Flex-Tengah">
@@ -8,10 +30,12 @@ export default function Profile() {
 
         <div className="Profile-info">
           <p>
-            <b>Nama:</b> {localStorage.getItem("nama")}
+            <b>Nama: </b>
+            <span style={{ color: nama.color }}>{nama.value}</span>
           </p>
           <p>
-            <b>Jenis Kelamin:</b> {localStorage.getItem("gender")}
+            <b>Jenis Kelamin: </b>
+            <span style={{ color: gender.color }}>{gender.value}</span>
           </p>
           <p>
             <b>Angkatan:</b> {localStorage.getItem("angkatan")}
